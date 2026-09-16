@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initScrollReveal();
     initTitleEntrance();
     initCardTilt();
+    initTeamModal();
 
     const backToTop = createBackToTopButton();
     const readingProgress = createReadingProgressBar();
@@ -157,6 +158,49 @@ function initCardTilt() {
             card.style.transform = "";
         });
     });
+}
+
+// ================================
+// MODAL "CONHEÇA A EQUIPE"
+// ================================
+function initTeamModal() {
+    const toggleButton = document.getElementById("team-toggle");
+    const modal = document.getElementById("team-modal");
+
+    if (!toggleButton || !modal) return;
+
+    const closeTargets = modal.querySelectorAll("[data-close]");
+    let lastFocusedElement = null;
+
+    const openModal = () => {
+        lastFocusedElement = document.activeElement;
+
+        modal.hidden = false;
+        toggleButton.setAttribute("aria-expanded", "true");
+        document.body.style.overflow = "hidden";
+
+        const closeButton = modal.querySelector(".team-modal-close");
+        if (closeButton) closeButton.focus();
+
+        document.addEventListener("keydown", onKeydown);
+    };
+
+    const closeModal = () => {
+        modal.hidden = true;
+        toggleButton.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
+
+        document.removeEventListener("keydown", onKeydown);
+
+        if (lastFocusedElement) lastFocusedElement.focus();
+    };
+
+    const onKeydown = (event) => {
+        if (event.key === "Escape") closeModal();
+    };
+
+    toggleButton.addEventListener("click", openModal);
+    closeTargets.forEach((target) => target.addEventListener("click", closeModal));
 }
 
 // ================================

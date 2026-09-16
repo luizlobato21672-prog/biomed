@@ -166,7 +166,38 @@
     <footer>
         <p>Projeto Acadêmico — Curso de Biomedicina</p>
         <p>Funepe · 2026</p>
+        <button
+            type="button"
+            id="team-toggle"
+            class="team-toggle"
+            aria-haspopup="dialog"
+            aria-expanded="false"
+            aria-controls="team-modal"
+        >
+            👥 Conheça a equipe
+        </button>
     </footer>
+
+    <div id="team-modal" class="team-modal" role="dialog" aria-modal="true" aria-labelledby="team-modal-title" hidden>
+        <div class="team-modal-backdrop" data-close></div>
+        <div class="team-modal-content" role="document">
+            <button type="button" class="team-modal-close" data-close aria-label="Fechar">✕</button>
+
+            <span class="section-label">Equipe</span>
+            <h3 id="team-modal-title">Integrantes do projeto</h3>
+
+            <ul class="team-list">
+                <li>Beatriz Rueda</li>
+                <li>Laira Senna</li>
+                <li>Maria Clara</li>
+                <li>Emilly</li>
+                <li>Paulo</li>
+                <li>Thiago</li>
+            </ul>
+
+            <p class="team-dev">Dev · Luiz K.</p>
+        </div>
+    </div>
 
     <script src="main.js"></script>
 </body>
